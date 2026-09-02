@@ -11,13 +11,13 @@ jobs:
     name: Unit Tests
     runs-on: ubuntu-24.04
     steps:
-    - name: Setup Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: 'stable'
-
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@v7
+
+    - name: Setup Go
+      uses: actions/setup-go@v7
+      with:
+        go-version-file: go.mod
 
     - name: Run Unit Tests
       run: ./scripts/unit.sh
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
     - name: Upload Artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: event-payload
         path: ${{ github.event_path }}
